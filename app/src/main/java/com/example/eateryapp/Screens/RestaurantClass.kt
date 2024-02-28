@@ -169,7 +169,7 @@ fun RestaurantCard(resName:String,status:Boolean,navController: NavController,in
         signalColor= Color.White
         openOrclose = "Open"
     }
-
+//
     else {
         signalColor= Color.Red
         openOrclose = "Close"
