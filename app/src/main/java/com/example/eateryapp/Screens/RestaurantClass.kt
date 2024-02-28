@@ -165,11 +165,12 @@ class RestaurantClass {
 fun RestaurantCard(resName:String,status:Boolean,navController: NavController,index:Int){
     val openOrclose:String;
     val signalColor:Color;
+
     if (status) {
         signalColor= Color.White
         openOrclose = "Open"
     }
-//
+
     else {
         signalColor= Color.Red
         openOrclose = "Close"
