@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 var totalItemInCart:Int=0
 var selectedResID = -1
+//var select
 
 
 var resName =  mutableStateListOf<RestaurantName>()

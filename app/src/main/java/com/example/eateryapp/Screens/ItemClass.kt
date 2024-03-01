@@ -92,7 +92,7 @@ class ItemClass {
                             modifier = Modifier.size(40.dp)
                         )
                         Text(
-                            text = "Sobuj Bangla",
+                            text = resName[selectedResID].name,
                             fontSize = 30.sp,
                             fontWeight = FontWeight.ExtraBold
                         )

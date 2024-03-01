@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.core.Context
 import com.google.firebase.database.getValue
 
 
@@ -14,7 +15,7 @@ import com.google.firebase.database.getValue
 fun LoadFromMain() {
     loadRestaurentData()
     loadTotalUser()
-
+    WriteToFile("sk.txt","nothing")
 }
 
 fun currentUserId(){
@@ -58,7 +59,7 @@ fun loadRestaurentData(){
                     val items = snap.child("items").getValue<List<RestaurantItems>>()
                     val resNm = RestaurantName(name, status, id, items!!)
 
-                    itm = items
+//                    itm = items
                     resName.add(resNm)
                 }
 
