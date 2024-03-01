@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.eateryapp.Data.currentUserId
 import com.example.eateryapp.R
 
 class Class02 {
@@ -59,7 +60,15 @@ class Class02 {
                         Text(
                             text = "Skip > ",
                             color = Color.Red,
-                            modifier = Modifier.padding(10.dp).clickable { navController.navigate("MapClass") },
+                            modifier = Modifier.padding(10.dp)
+
+                                .clickable {
+                                if(currentUserId>0)
+                                   navController.navigate("MapClass")
+                                else
+                                    navController.navigate("login")
+                             },
+
                             fontWeight = FontWeight.ExtraBold
                         )
                     }

@@ -102,7 +102,8 @@ class Class04 {
 //                        Spacer(modifier = Modifier.height(250.dp))
                     Button(
                         onClick = {
-                                  navController.navigate("MapClass")
+                                  navController.navigate("Login")
+                                      //  navController.navigate("MapClass")
                                   },
                         modifier = Modifier
                             .padding(30.dp)

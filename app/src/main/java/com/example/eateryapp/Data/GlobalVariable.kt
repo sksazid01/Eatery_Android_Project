@@ -16,4 +16,4 @@ var itm : List<RestaurantItems> = emptyList()
 var database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
 var totalUser:Int=0
-var currentUserId:Int = 0
+var currentUserId:Int = 1

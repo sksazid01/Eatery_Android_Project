@@ -1,6 +1,7 @@
 package com.example.eateryapp.Screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -17,10 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,23 +34,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.eateryapp.Data.RestaurantItems
-import com.example.eateryapp.Data.RestaurantName
-import com.example.eateryapp.Data.currentUserId
 import com.example.eateryapp.Data.database
-import com.example.eateryapp.Data.itm
-import com.example.eateryapp.Data.resName
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 class Login {
         companion object{
-
-            var check = mutableStateOf(0)
-
+            @OptIn(DelicateCoroutinesApi::class)
             @SuppressLint("SuspiciousIndentation")
             @Composable
             fun Login(navController: NavController){
@@ -116,14 +108,20 @@ class Login {
                         shape = RoundedCornerShape(20.dp))
 
                         Button(
-
-
-
                             onClick = {
                                 if(passStore.isNotEmpty() and mailStore.isNotEmpty()) {
-//                                    check.value = 0// initialization
-                                    checkLogin(mailStore, passStore)
-                                }
+                                    checkLogin(mailStore, passStore,navController,localContext)
+//                                    GlobalScope.launch {
+//                                    val temp = checkLogin(mailStore, passStore)
+////                                    Thread.sleep(5000)
+//                                    Log.d("login", "temp = $temp")
+//
+//                                        navController.navigate("MapClass")
+//                                    } else {
+//
+//                                    }
+//                                }
+                        }
                                 else{
                                     Toast.makeText(localContext,"Provide email and password",Toast.LENGTH_SHORT).show()
                                 }
@@ -169,33 +167,35 @@ class Login {
             }
 
 
-
-            private fun checkLogin(mailStore:String, passStore:String){
+             private fun checkLogin(
+                 mailStore: String,
+                 passStore: String,
+                 navController: NavController,
+                 localContext: Context
+             ){
                 val reference: DatabaseReference = database.reference.child("SignUP Information")
-                var count = 0
                 reference.addListenerForSingleValueEvent(
                     object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             for (snap in snapshot.children) {
-                                count += 1
-                                val mail = snap.child("mail").value.toString()
+                                val mail = snap.key.toString()
                                 val pass = snap.child("pass").value.toString()
 
-                                Log.d("login", "$mail <-$mailStore | $passStore-> $pass")
+                                Log.d("login", "Database mail: $mail  Textfield Mail -> $mailStore ||| Database -> $pass Textfield ->  $passStore")
 
                                 if(mail == mailStore && pass == passStore){
-//                                    Log.d("login","flag = true")
-                                    Log.d("login","Count = $count")
-                                    check.value=count
-                                    Log.d("login","check.value = ${check.value}")
+                                    Toast.makeText(localContext, "Successfully Signed In", Toast.LENGTH_SHORT).show()
+                                    navController.navigate("MapClass")
                                     break
                                 }
                             }
+                             Toast.makeText(localContext, "Provided Wrong Email and Password", Toast.LENGTH_SHORT).show()
                         }
 
 
                         override fun onCancelled(error: DatabaseError) {
-                            Log.d("login","Login Fail")
+                            Toast.makeText(localContext, "Unable to read from database", Toast.LENGTH_SHORT).show()
+//                            Log.d("login","Login Fail")
                         }
                     }
                 )

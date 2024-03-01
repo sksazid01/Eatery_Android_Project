@@ -37,7 +37,9 @@ import com.example.eateryapp.Data.LoadFromMain
 import com.example.eateryapp.Screens.Class02
 import com.example.eateryapp.Screens.Class03
 import com.example.eateryapp.Screens.Class04
+import com.example.eateryapp.Screens.Login
 import com.example.eateryapp.Screens.MapClass
+import com.example.eateryapp.Screens.SignUP
 import com.example.eateryapp.ui.theme.EateryAppTheme
 import kotlinx.coroutines.delay
 
@@ -50,13 +52,15 @@ class MainActivity : ComponentActivity() {
 //                RestaurantList(resName);
 
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "RestaurantClass") {
+            NavHost(navController = navController, startDestination = "Main") {
                 composable("Main") { FirstScreen(navController)}
                 composable("Class02") { Class02.View02(navController)}
                 composable("Class03"){ Class03.View03(navController)}
                 composable("Class04"){ Class04.View04(navController)}
                 composable("MapClass"){ MapClass.View05(navController)}
                 composable("RestaurantClass"){BottomNavigationBar.BottomNavigationBar()}
+                composable("Login"){ Login.Login(navController)}
+                composable("SignUp"){ SignUP.SignUP(navController)}
               }
             }
         }

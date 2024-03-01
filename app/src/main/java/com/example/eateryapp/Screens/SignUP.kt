@@ -56,7 +56,7 @@ class SignUP {
             Box(
                 modifier = Modifier
                     .width(screenWidthDp)
-                    .height(screenHeightDp-100.dp)
+                    .height(screenHeightDp)
                     .background(
                         brush = Brush.linearGradient(
                             colors = listOf(
@@ -135,21 +135,18 @@ class SignUP {
 //                                Log.d("signup","onClick button pressed")
                                 if(nameStore.isNotEmpty() and passStore.isNotEmpty() and mailStore.isNotEmpty()){
                                     loadTotalUser()
-
 //                                    Log.d("signup","onClick button pressed and strings are not empty and totalUser: $totalUser")
-
                                     //increase total user and provide unique id for every user.
                                      totalUserRef.setValue(totalUser+1)
 
-                                    val data= SingUPData(nameStore,mailStore,passStore)
+                                    val data= SingUPData(nameStore,passStore)
 
-                                    signUpRef.child((totalUser+1).toString()).setValue(data)
+                                    signUpRef.child(mailStore).setValue(data)
                                     .addOnSuccessListener {
                                         nameStore=""
                                         mailStore=""
                                         passStore=""
                                         navController.navigate("Login")
-
                                     Toast.makeText(toastContext,"Account has been successfully created",Toast.LENGTH_SHORT).show()
 
                                     }.addOnFailureListener {

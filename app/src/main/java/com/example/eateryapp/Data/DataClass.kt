@@ -20,6 +20,5 @@ data class RestaurantItems(
 //signup data
 data class SingUPData(
     var name:String,
-    var mail:String,
     var pass:String
 )
