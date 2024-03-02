@@ -188,7 +188,7 @@ class Login {
                  navController: NavController,
                  localContext: Context,
                  navigationText:String
-             ){
+             ){ var flag=true
                 val reference: DatabaseReference = database.reference.child("SignUP Information")
                 reference.addListenerForSingleValueEvent(
                     object : ValueEventListener {
@@ -202,10 +202,18 @@ class Login {
                                 if(mail == mailStore && pass == passStore){
                                     Toast.makeText(localContext, "Successfully Signed In", Toast.LENGTH_SHORT).show()
                                     navController.navigate(navigationText)
+                                    flag = false
                                     break
                                 }
                             }
-                             Toast.makeText(localContext, "Provided Wrong Email and Password", Toast.LENGTH_SHORT).show()
+                            if(flag) {
+//                                passStore=""
+                                Toast.makeText(
+                                    localContext,
+                                    "Provided Wrong Email and Password",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
 
 

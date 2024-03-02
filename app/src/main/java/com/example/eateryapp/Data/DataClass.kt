@@ -4,7 +4,7 @@ data class RestaurantName(
     var name:String,
     var status:Boolean,
     var id:Int,
-    var items:List<RestaurantItems>//?=null
+    var items:List<RestaurantItems> = emptyList()//?=null
 
 )
 

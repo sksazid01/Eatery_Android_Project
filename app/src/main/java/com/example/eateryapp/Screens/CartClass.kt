@@ -49,7 +49,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.eateryapp.Data.RestaurantItems
-import com.example.eateryapp.Data.itm
 import com.example.eateryapp.Data.resName
 import com.example.eateryapp.Data.selectedResID
 import com.example.eateryapp.Data.totalItemInCart
@@ -132,25 +131,14 @@ class CartClass {
                             shape = RoundedCornerShape(20.dp)
                         )
                         Text(text = "Total: ", fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(start = 15.dp))
-                        Button(
-                            onClick = { /*TODO*/ },
-                            modifier= Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp)
-                                .height(50.dp),
-//                                .background(Color(0xFF644AB5)), wrong approach
-                            colors = ButtonDefaults.buttonColors(Color(0xFF644AB5)),
-                            shape = RoundedCornerShape(30.dp)
-                        ) {
-                            Text(
-                                text = "Checkout",
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 4.em
-                            )
-                        }
+                       
+                    Row(){
+                        CreateButton("PreOrder",130)
+                        Spacer(modifier = Modifier.width(3.dp))
+                        CreateButton(buttonText = "OnTable Order",180)
+                    }
+                        
                         Row {
-
                         Spacer(modifier = Modifier.weight(1f))
 //                        Text(
 //                            text="Back to Menu",
@@ -162,6 +150,27 @@ class CartClass {
                     }
 //                        Spacer(modifier = Modifier.height(80.dp))
                     }
+                }
+            }
+            
+            @Composable
+            fun CreateButton(buttonText:String,width:Int){
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier= Modifier
+                        .width(width.dp)
+                        .padding(5.dp)
+                        .height(50.dp),
+//                                .background(Color(0xFF644AB5)), wrong approach
+                    colors = ButtonDefaults.buttonColors(Color(0xFF644AB5)),
+                    shape = RoundedCornerShape(30.dp)
+                ) {
+                    Text(
+                        text = buttonText,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 4.em
+                    )
                 }
             }
         @Composable

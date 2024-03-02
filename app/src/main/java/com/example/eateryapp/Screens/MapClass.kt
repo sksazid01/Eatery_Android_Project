@@ -79,7 +79,7 @@ class MapClass {
 
                     Spacer(modifier = Modifier.weight(0.2f))
 
-                    var title by remember { mutableStateOf("") }
+                    var title by remember { mutableStateOf("myCampus") }
                     OutlinedTextField(
                         value = title, onValueChange = { newText -> title = newText },
                         shape = RoundedCornerShape(15.dp),
@@ -90,7 +90,7 @@ class MapClass {
 
                     Spacer(modifier = Modifier.weight(0.2f))
 
-                    var address by remember { mutableStateOf("") }
+                    var address by remember { mutableStateOf("SUST") }
                     OutlinedTextField(
                         value = address, onValueChange = { newText -> address = newText },
                         shape = RoundedCornerShape(15.dp),
@@ -106,7 +106,7 @@ class MapClass {
                     }
                     Button(
                         onClick = {
-                                  navController.navigate("RestaurantClass")
+                                      navController.navigate("RestaurantClass")
                                   },
                         modifier = Modifier
                             .padding(30.dp)
