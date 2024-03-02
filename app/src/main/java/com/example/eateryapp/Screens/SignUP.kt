@@ -78,13 +78,13 @@ class SignUP {
                         text = "Sign Up",
                         fontSize = 15.em,
                         modifier = Modifier.padding(40.dp),
-                        color = Color.White
+                        color = Color.Black
                     )
                     Text(
                         text="Enter Your Information",
                         fontSize = 4.em,
                         modifier = Modifier.padding(20.dp),
-                        color = Color.White
+                        color = Color.Black
                     )
 
                     var nameStore by remember { mutableStateOf("") }
@@ -169,7 +169,7 @@ class SignUP {
 
                     ) {
                         Text(
-                            text = "Sign Up",
+                            text = "SignUp As User",
                             color = Color.White,
 //                                fontWeight = FontWeight.ExtraBold
                         )

@@ -9,10 +9,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -66,14 +68,14 @@ class Login {
                         )
                 ){
                     Column(
-                        modifier = Modifier.padding(20.dp),
+                        modifier = Modifier.padding(10.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
                             text = "Sign In",
                             fontSize = 60.sp,
                             modifier = Modifier.padding(40.dp),
-                            color = Color.White
+                            color = Color.Black
                         )
                         Text(
                             text="Enter Your Email And Password",
@@ -81,7 +83,7 @@ class Login {
                             modifier = Modifier
                                 .padding(20.dp)
                                 .fillMaxWidth(),
-                            color = Color.White
+                            color = Color.Black
                         )
 
                         var mailStore by remember { mutableStateOf("") }
@@ -107,39 +109,14 @@ class Login {
                             .padding(bottom = 30.dp),
                         shape = RoundedCornerShape(20.dp))
 
-                        Button(
-                            onClick = {
-                                if(passStore.isNotEmpty() and mailStore.isNotEmpty()) {
-                                    checkLogin(mailStore, passStore,navController,localContext)
-//                                    GlobalScope.launch {
-//                                    val temp = checkLogin(mailStore, passStore)
-////                                    Thread.sleep(5000)
-//                                    Log.d("login", "temp = $temp")
-//
-//                                        navController.navigate("MapClass")
-//                                    } else {
-//
-//                                    }
-//                                }
-                        }
-                                else{
-                                    Toast.makeText(localContext,"Provide email and password",Toast.LENGTH_SHORT).show()
-                                }
-                            },
+                        Row(){
+                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As User","mapClass")
+//                            Spacer(modifier = Modifier.width(10.dp))
+                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As Owner","mapClass")
 
-                            modifier = Modifier
-                                .padding(30.dp)
-                                .size(300.dp, 50.dp),
-                            colors = ButtonDefaults.buttonColors(Color.Red),
-                            shape = RoundedCornerShape(50.dp)
-
-                        ) {
-                            Text(
-                                text = "Login",
-                                color = Color.White,
-//                                fontWeight = FontWeight.ExtraBold
-                            )
                         }
+
+
                         Row (
                             verticalAlignment = Alignment.CenterVertically
                         ){
@@ -167,11 +144,50 @@ class Login {
             }
 
 
+
+            @Composable
+            private fun CreateLoginButton(mailStore: String,passStore:String,navController: NavController,localContext:Context,buttonText:String,navigationText:String){
+                Button(
+                    onClick = {
+                        if(passStore.isNotEmpty() and mailStore.isNotEmpty()) {
+                            checkLogin(mailStore, passStore,navController,localContext,navigationText)
+//                                    GlobalScope.launch {
+//                                    val temp = checkLogin(mailStore, passStore)
+////                                    Thread.sleep(5000)
+//                                    Log.d("login", "temp = $temp")
+//
+//                                        navController.navigate("MapClass")
+//                                    } else {
+//
+//                                    }
+//                                }
+                        }
+                        else{
+                            Toast.makeText(localContext,"Provide email and password",Toast.LENGTH_SHORT).show()
+                        }
+                    },
+
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(160.dp, 50.dp),
+                    colors = ButtonDefaults.buttonColors(Color.Red),
+                    shape = RoundedCornerShape(40.dp)
+                ) {
+                    Text(
+                        text = buttonText,
+                        color = Color.White,
+//                                fontWeight = FontWeight.ExtraBold
+                    )
+                }
+            }
+
+
              private fun checkLogin(
                  mailStore: String,
                  passStore: String,
                  navController: NavController,
-                 localContext: Context
+                 localContext: Context,
+                 navigationText:String
              ){
                 val reference: DatabaseReference = database.reference.child("SignUP Information")
                 reference.addListenerForSingleValueEvent(
@@ -185,7 +201,7 @@ class Login {
 
                                 if(mail == mailStore && pass == passStore){
                                     Toast.makeText(localContext, "Successfully Signed In", Toast.LENGTH_SHORT).show()
-                                    navController.navigate("MapClass")
+                                    navController.navigate(navigationText)
                                     break
                                 }
                             }

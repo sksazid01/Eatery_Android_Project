@@ -93,7 +93,7 @@ class ItemClass {
                         )
                         Text(
                             text = resName[selectedResID].name,
-                            fontSize = 30.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.ExtraBold
                         )
 //                        Spacer(modifier = Modifier.weight(1f))
@@ -149,7 +149,6 @@ class ItemClass {
             val borderColor = Color.Transparent
 
             var isSelected by remember { mutableStateOf(item.isSelected) }
-
             // Use LaunchedEffect to trigger recomposition when isSelected changes
             LaunchedEffect(isSelected) {
                 item.isSelected = isSelected
@@ -184,19 +183,40 @@ class ItemClass {
                             modifier = Modifier.fillMaxSize()
                         )
 
-                        Box(
-                            Modifier
-                                .background(
-                                    shape = CircleShape,
-                                    color = Color.White
+                        Row(){
+                            Box(
+                                Modifier
+                                    .background(
+                                        shape = CircleShape,
+                                        color = Color.White
+                                    )
+                                    .padding(5.dp)
+                            ) {
+                                Text(
+                                    text = price.toString() + "৳",
+                                    textAlign = TextAlign.End,
+                                    fontWeight = FontWeight.ExtraBold
                                 )
-                                .padding(5.dp)
-                        ) {
-                            Text(
-                                text = price.toString() + "৳",
-                                textAlign = TextAlign.End,
-                                fontWeight = FontWeight.ExtraBold
-                            )
+                            }
+                            Spacer(modifier = Modifier.weight(1f))
+                            Box(
+                                Modifier
+                                    .padding(top = 20.dp, end = 7.dp)
+                                    .background(
+                                        shape = CircleShape,
+                                        color = Color.Black
+                                    )
+
+                            ) {
+                                Text(
+                                    text = ((12354*Math.random())%100).toInt().toString() + " left",
+                                    textAlign = TextAlign.End,
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = Color.White,
+                                    fontSize = 10.sp,
+                                    modifier = Modifier.padding(2.dp)
+                                )
+                            }
                         }
                     }
                 }
