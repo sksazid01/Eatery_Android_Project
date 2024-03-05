@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "841661878880",
+    "firebase_url": "https://eateryapp-48bb7-default-rtdb.firebaseio.com",
+    "project_id": "eateryapp-48bb7",
+    "storage_bucket": "eateryapp-48bb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841661878880:android:a59ca9cf245e755e78e905",
+        "android_client_info": {
+          "package_name": "com.example.eateryapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSMD9P4ahueMDNOFMiHcMNjHq6jQbrJZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
