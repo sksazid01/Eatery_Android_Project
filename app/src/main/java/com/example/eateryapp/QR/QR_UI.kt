@@ -1,4 +1,4 @@
-package com.example.eateryapp.Screens
+package com.example.eateryapp.QR
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.em
 import androidx.navigation.NavController
 import com.example.eateryapp.R
 
-class QR {
+class QR_UI {
     companion object{
         @Composable
         fun Qr(navController: NavController){
@@ -93,7 +93,7 @@ class QR {
 
                         Button(
                             onClick = {
-
+                                navController.navigate("ScanQR")
                             },
                             modifier = Modifier
                                 .padding(30.dp)

@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 //                RestaurantList(resName);
 
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "Main") {
+            NavHost(navController = navController, startDestination = "RestaurantClass") {
                 composable("Main") { FirstScreen(navController)}
                 composable("Class02") { Class02.View02(navController)}
                 composable("Class03"){ Class03.View03(navController)}

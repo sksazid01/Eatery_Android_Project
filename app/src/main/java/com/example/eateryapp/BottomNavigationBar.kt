@@ -1,6 +1,8 @@
 package com.example.eateryapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import androidx.annotation.CheckResult
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -27,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -37,7 +40,8 @@ import com.example.eateryapp.Data.totalItemInCart
 import com.example.eateryapp.Screens.CartClass
 import com.example.eateryapp.Screens.ItemClass
 import com.example.eateryapp.Screens.Login
-import com.example.eateryapp.Screens.QR
+import com.example.eateryapp.QR.QR_UI
+import com.example.eateryapp.QR.TurnOnCamera
 import com.example.eateryapp.Screens.RestaurantClass
 import com.example.eateryapp.Screens.SignUP
 
@@ -85,12 +89,12 @@ class BottomNavigationBar {
             ) {
                 NavHost(navController = navController2 as NavHostController, startDestination = "RestaurantClass") {
                     composable("RestaurantClass"){ RestaurantClass.View06(navController2)}
-                    composable("QR"){ QR.Qr(navController2)}
+                    composable("QR"){ QR_UI.Qr(navController2)}
                     composable("ItemClass"){ ItemClass.View08(navController2)}
                     composable("CartClass"){ CartClass.View10(navController2)}
                     composable("Login"){ Login.Login(navController2)}
                     composable("SignUp"){ SignUP.SignUP(navController2)}
-//                composable("Class0"){ Class0.View0()}
+                    composable("ScanQR"){ TurnOnCamera() }
                 }
             }
         }
