@@ -82,7 +82,7 @@ fun SettingUI(navController: NavController){
 
             OutlinedButton(
                 onClick = {
-
+                    Toast.makeText(localContext,"Currently Unable this feature!!",Toast.LENGTH_SHORT).show()
                 },
 
                 modifier = Modifier
@@ -105,6 +105,7 @@ fun SettingUI(navController: NavController){
 
             OutlinedButton(
                 onClick = {
+                    Toast.makeText(localContext,"Currently Unable this feature!!",Toast.LENGTH_SHORT).show()
 
                 },
 
@@ -125,6 +126,7 @@ fun SettingUI(navController: NavController){
 
             OutlinedButton(
                 onClick = {
+                    Toast.makeText(localContext,"Currently Unable this feature!!",Toast.LENGTH_SHORT).show()
 
                 },
 

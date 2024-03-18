@@ -39,6 +39,7 @@ import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.Screens.CartClass
 import com.example.eateryapp.Screens.ItemClass
 import com.example.eateryapp.Login.Login
+import com.example.eateryapp.Login.OwnerUI
 import com.example.eateryapp.QR.QR_UI
 import com.example.eateryapp.QR.TurnOnCamera
 import com.example.eateryapp.Screens.RestaurantClass
@@ -96,6 +97,7 @@ class BottomNavigationBar {
                     composable("SignUp"){ SignUP.SignUP(navController2)}
                     composable("ScanQR"){ TurnOnCamera() }
                     composable("Setting"){ SettingUI(navController = navController2)}
+                    composable("Owner"){ OwnerUI(navController2) }
                 }
             }
         }

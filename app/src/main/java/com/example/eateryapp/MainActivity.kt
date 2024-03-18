@@ -36,12 +36,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eateryapp.Data.LoadFromMain
 import com.example.eateryapp.Data.localContext
+import com.example.eateryapp.Data.navController2
 import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.Screens.Class02
 import com.example.eateryapp.Screens.Class03
 import com.example.eateryapp.Screens.GetStarted
 import com.example.eateryapp.Login.Login
+import com.example.eateryapp.Login.OwnerUI
 import com.example.eateryapp.Screens.MapClass
+import com.example.eateryapp.Screens.SettingUI
 import com.example.eateryapp.Screens.SignUP
 import com.example.eateryapp.ui.theme.EateryAppTheme
 import kotlinx.coroutines.delay
@@ -65,6 +68,8 @@ class MainActivity : ComponentActivity() {
                 composable("RestaurantClass"){BottomNavigationBar.BottomNavigationBar()}
                 composable("Login"){ Login.Login(navController)}
                 composable("SignUp"){ SignUP.SignUP(navController)}
+                composable("Owner"){ OwnerUI(navController)}
+                composable("Setting"){ SettingUI(navController) }
               }
             }
         }

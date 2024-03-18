@@ -112,7 +112,7 @@ class Login {
                         Row(){
                             CreateLoginButton(mailStore, passStore,navController,localContext,"Login As User","mapClass",Color.Red)
 //                            Spacer(modifier = Modifier.width(10.dp))
-                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As Owner","mapClass",Color(0xFF1e67c7))
+                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As Owner","Owner",Color(0xFF1e67c7))
                         }
 
 
