@@ -153,16 +153,16 @@ class BottomNavigationBar {
                         icon = {
                             BadgedBox(
                                 badge = {
-                                    if(item.badgeCount != null) {
-                                        Badge {
-                                            Text(text = item.badgeCount.toString())
-                                        }
-                                    }
-
-
-                                    else if(item.hasNews) {
-                                        Badge()
-                                    }   //apatoto no needed
+//                                    if(item.badgeCount != null) {
+//                                        Badge {
+//                                            Text(text = item.badgeCount.toString())
+//                                        }
+//                                    }
+//
+//
+//                                    else if(item.hasNews) {
+//                                        Badge()
+//                                    }   //apatoto no needed
                                 }
                             ) {
                                 Icon(
