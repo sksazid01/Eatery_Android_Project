@@ -23,6 +23,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -34,10 +35,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eateryapp.Data.LoadFromMain
+import com.example.eateryapp.Data.localContext
+import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.Screens.Class02
 import com.example.eateryapp.Screens.Class03
-import com.example.eateryapp.Screens.Class04
-import com.example.eateryapp.Screens.Login
+import com.example.eateryapp.Screens.GetStarted
+import com.example.eateryapp.Login.Login
 import com.example.eateryapp.Screens.MapClass
 import com.example.eateryapp.Screens.SignUP
 import com.example.eateryapp.ui.theme.EateryAppTheme
@@ -49,14 +52,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             EateryAppTheme {
                 LoadFromMain()
+                localContext = LocalContext.current
 //                RestaurantList(resName);
 
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "RestaurantClass") {
+            NavHost(navController = navController, startDestination = "Main") {
                 composable("Main") { FirstScreen(navController)}
                 composable("Class02") { Class02.View02(navController)}
                 composable("Class03"){ Class03.View03(navController)}
-                composable("Class04"){ Class04.View04(navController)}
+                composable("Class04"){ GetStarted.View04(navController)}
                 composable("MapClass"){ MapClass.View05(navController)}
                 composable("RestaurantClass"){BottomNavigationBar.BottomNavigationBar()}
                 composable("Login"){ Login.Login(navController)}
@@ -129,7 +133,17 @@ class MainActivity : ComponentActivity() {
         }
         LaunchedEffect(Unit) {
             delay(2000) // Simulating a 2-second delay
-            navC.navigate("Class02")
+
+            // Retrieve the flag
+            val flag = FlagManager.getFlag(applicationContext)
+            if(flag>0){
+                if(flag == 1)
+                    navC.navigate("Login")
+                else
+                    navC.navigate("RestaurantClass")
+            }
+            else
+                navC.navigate("Class02")
         }
     }
 }

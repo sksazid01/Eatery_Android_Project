@@ -30,6 +30,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.eateryapp.Data.localContext
+import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.R
 
 class Class03 {
@@ -69,7 +71,18 @@ class Class03 {
                         Text(
                             text = "Skip > ",
                             color = Color.Red,
-                            modifier = Modifier.padding(10.dp).clickable { navController.navigate("MapClass") },
+                            modifier = Modifier.padding(10.dp).clickable {
+                                FlagManager.saveFlag(localContext, 1)
+                                val flag = FlagManager.getFlag(localContext)
+                                if(flag>0){
+                                    if(flag == 1)
+                                        navController.navigate("Login")
+                                    else
+                                        navController.navigate("RestaurantClass")
+                                }
+                                else
+                                    navController.navigate("Login")
+                             },
                             fontWeight = FontWeight.ExtraBold
                         )
                 }

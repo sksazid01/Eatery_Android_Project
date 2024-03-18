@@ -26,9 +26,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.eateryapp.Data.localContext
+import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.R
 
-class Class04 {
+class GetStarted {
     companion object{
 
         @Composable
@@ -49,18 +51,6 @@ class Class04 {
                         )
                     )
             ){
-//                Row (
-//                    modifier = Modifier.height(60.dp).fillMaxWidth(),
-//                    horizontalArrangement = Arrangement.End
-//                ){
-//                    Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(10.dp)) {
-//                        Text(
-//                            text = "Skip > ",
-//                            color = Color.Red,
-//                        )
-//
-//                    }
-//                }
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxSize(),
@@ -102,6 +92,7 @@ class Class04 {
 //                        Spacer(modifier = Modifier.height(250.dp))
                     Button(
                         onClick = {
+                                  FlagManager.saveFlag(localContext, 1)
                                   navController.navigate("Login")
                                       //  navController.navigate("MapClass")
                                   },

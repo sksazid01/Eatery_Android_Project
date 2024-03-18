@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.eateryapp.Data.currentUserId
+import com.example.eateryapp.Data.localContext
+import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.R
 
 class Class02 {
@@ -63,11 +65,17 @@ class Class02 {
                             modifier = Modifier.padding(10.dp)
 
                                 .clickable {
-                                if(currentUserId>0)
-                                   navController.navigate("MapClass")
-                                else
-                                    navController.navigate("login")
-                             },
+                                    FlagManager.saveFlag(localContext, 1)
+                                    val flag = FlagManager.getFlag(localContext)
+                                    if(flag>0){
+                                        if(flag == 1)
+                                            navController.navigate("Login")
+                                        else
+                                            navController.navigate("RestaurantClass")
+                                    }
+                                    else
+                                        navController.navigate("Login")
+                                },
 
                             fontWeight = FontWeight.ExtraBold
                         )

@@ -270,7 +270,7 @@ class ItemClass {
 
                             ) {
                                 Text(
-                                    text = ((12354*Math.random())%100).toInt().toString() + " left",
+                                    text = (100.toString()) + " left",
                                     textAlign = TextAlign.End,
                                     fontWeight = FontWeight.ExtraBold,
                                     color = Color.White,

@@ -1,4 +1,4 @@
-package com.example.eateryapp.Screens
+package com.example.eateryapp.Login
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,12 +9,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -114,7 +112,6 @@ class Login {
                             CreateLoginButton(mailStore, passStore,navController,localContext,"Login As User","mapClass",Color.Red)
 //                            Spacer(modifier = Modifier.width(10.dp))
                             CreateLoginButton(mailStore, passStore,navController,localContext,"Login As Owner","mapClass",Color(0xFF1e67c7))
-
                         }
 
 
@@ -192,6 +189,9 @@ class Login {
                                 Log.d("login", "Database mail: $mail  Text-field Mail -> $mailStore ||| Database -> $pass Textfield ->  $passStore")
 
                                 if(mail == mailStore && pass == passStore){
+                                    // Save the flag for successfully Login.
+                                    FlagManager.saveFlag(localContext, 2)
+
                                     Toast.makeText(localContext, "Successfully Signed In", Toast.LENGTH_SHORT).show()
                                     navController.navigate(navigationText)
                                     flag = false
