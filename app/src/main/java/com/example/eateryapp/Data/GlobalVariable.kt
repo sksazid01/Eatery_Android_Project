@@ -9,11 +9,11 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 var totalItemInCart:Int=0
-var selectedResID = -1
+var selectedResID = 0
 
 
 var resName =  mutableStateListOf<RestaurantName>()
-var itm : List<RestaurantItems> = emptyList()
+//var itm : List<RestaurantItems> = emptyList()
 
 
 //database section

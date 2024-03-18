@@ -1,12 +1,18 @@
 package com.example.eateryapp.Data
 
+data class AllItems(
+    var whenPrepare:String,
+    var items:List<RestaurantItems>
+)
+
 data class RestaurantName(
     var name:String,
     var status:Boolean,
     var id:Int,
-    var items:List<RestaurantItems> = emptyList()//?=null
-
+    var itemsWhen:List<AllItems> = emptyList() //?=null
 )
+
+
 
 data class RestaurantItems(
     var itemName: String?="no name",

@@ -135,19 +135,6 @@ class RestaurantClass {
                    Spacer(modifier = Modifier.height(35.dp))
 
 
-//                   val resList:List<Pair<String,Boolean>> = listOf(
-//                       "Central Cafeteria,SUST" to true,
-//                       "Shah Poran Hall,Canteen" to true,
-//                       "MR Kacchi Ghor,SUST Gate" to false,
-//                       "QBistro,SUST Gate" to false,
-//                       "Central Cafeteria,SUST" to true,
-//                       "Shah Poran Hall,Canteen" to true,
-//                       "MR Kacchi Ghor,SUST Gate" to false,
-//                       "Central Cafeteria,SUST" to true,
-//                       "Shah Poran Hall,Canteen" to true,
-//                       "MR Kacchi Ghor,SUST Gate" to false
-//                   )
-
                    LazyColumn(content ={
                        itemsIndexed(resName){
                            index,item->

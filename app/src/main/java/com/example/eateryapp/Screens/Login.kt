@@ -111,9 +111,9 @@ class Login {
                         shape = RoundedCornerShape(20.dp))
 
                         Row(){
-                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As User","mapClass")
+                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As User","mapClass",Color.Red)
 //                            Spacer(modifier = Modifier.width(10.dp))
-                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As Owner","mapClass")
+                            CreateLoginButton(mailStore, passStore,navController,localContext,"Login As Owner","mapClass",Color(0xFF1e67c7))
 
                         }
 
@@ -147,7 +147,7 @@ class Login {
 
 
             @Composable
-            private fun CreateLoginButton(mailStore: String,passStore:String,navController: NavController,localContext:Context,buttonText:String,navigationText:String){
+            private fun CreateLoginButton(mailStore: String,passStore:String,navController: NavController,localContext:Context,buttonText:String,navigationText:String,color:Color){
                 Button(
                     onClick = {
                         if(passStore.isNotEmpty() and mailStore.isNotEmpty()) {
@@ -161,7 +161,7 @@ class Login {
                     modifier = Modifier
                         .padding(5.dp)
                         .size(160.dp, 50.dp),
-                    colors = ButtonDefaults.buttonColors(Color.Red),
+                    colors = ButtonDefaults.buttonColors(color),
                     shape = RoundedCornerShape(40.dp)
                 ) {
                     Text(

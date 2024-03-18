@@ -52,18 +52,26 @@ fun loadRestaurentData(){
                 for (snap in snapshot.children) {
 //                    Log.d("MyTag", "snaps available")
                     val name = snap.child("name").value.toString()
-                    val id: Int = (snap.child("id").value as? Long)?.toInt()
-                        ?: -1 // Handle null or non-integer values
-                    val status = snap.child("status").value as? Boolean
-                        ?: false // Default to false if null or non-boolean
-                    val items = snap.child("items").getValue<List<RestaurantItems>>()
-                    val resNm = RestaurantName(name, status, id, items!!)
+                    val id: Int = (snap.child("id").value as? Long)?.toInt() ?: -1 // Handle null or non-integer values
+                    val status = snap.child("status").value.toString().toBoolean() // Default to false if null or non-boolean
+//                    val items = snap.child("items").child("night").getValue<List<RestaurantItems>>()
+//                    val items = snap.child("items").children
 
+
+                    val itemL: MutableList<AllItems> = mutableListOf()
+
+                    val keysToFetch = listOf("night", "evening","morning") // Add more keys if needed
+
+                    for (key in keysToFetch) {
+                        val temp = snap.child("items").child(key).getValue<List<RestaurantItems>>()
+                            ?.let { AllItems(key, it) }
+                        temp?.let { itemL.add(it) }
+                    }
+
+                    val resNm = RestaurantName(name, status, id, itemL)
 //                    itm = items
                     resName.add(resNm)
                 }
-
-
 //                Log.d("MyTag", itm.toString())
 //                itm.addAll(itm)
             }

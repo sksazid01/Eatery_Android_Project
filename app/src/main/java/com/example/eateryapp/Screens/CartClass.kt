@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -98,9 +99,10 @@ class CartClass {
                                 LazyColumn(
                                     content = {
                                         isPressClear=false
-                                        items(resName[selectedResID].items) { item ->
-                                            if(item.numberOfSelection!! >0)
-                                                CartItem(item, navController);
+                                        items(resName[selectedResID].itemsWhen) { item ->
+                                            for(it in item.items)
+                                               if(it.numberOfSelection!! >0)
+                                                CartItem(it, navController);
                                         }
                                     },
                                 )

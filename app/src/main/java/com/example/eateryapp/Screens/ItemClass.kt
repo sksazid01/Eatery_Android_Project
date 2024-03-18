@@ -21,13 +21,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -98,8 +101,9 @@ class ItemClass {
                         )
 //                        Spacer(modifier = Modifier.weight(1f))
                     }
-                    Spacer(modifier = Modifier.height(35.dp))
+                    Spacer(modifier = Modifier.height(5.dp)) // space between search and title
 
+                    
                     var address by remember { mutableStateOf("") }
 
                     Row {
@@ -109,7 +113,8 @@ class ItemClass {
                             shape = RoundedCornerShape(15.dp),
                             modifier = Modifier
                                 .width(350.dp)
-                                .height(70.dp),
+                                .height(70.dp)
+                                .padding(5.dp),
                             singleLine = true,
                             label = {
                                 Row {
@@ -126,13 +131,68 @@ class ItemClass {
                         )
                         Spacer(modifier = Modifier.weight(1f))
                     }
-                    Spacer(modifier = Modifier.height(35.dp))
+                    var flag by remember { mutableStateOf(true) }
+                    var itm:MutableList<RestaurantItems> = emptyList<RestaurantItems>().toMutableList()
+                    for(it in resName[selectedResID].itemsWhen)
+                        for(itt in it.items)
+                            itm.add(itt)
+                    val allItem = itm
 
+                    Row{
 
-                    LazyVerticalGrid(columns = GridCells.Fixed(2), content ={
-                        items(resName[selectedResID].items){
+                        OutlinedButton(onClick = {
+                            itm = allItem
+                            flag = !flag
+                         },
+                            Modifier.padding(start = 5.dp,end = 5.dp)
+                        ) {
+                            Text("All")
+                        }
+//                        Spacer(modifier = Modifier.weight(1f))
+
+                        OutlinedButton(onClick = {
+                            for(it in resName[selectedResID].itemsWhen)
+                                if(it.whenPrepare=="morning")
+                                    itm= it.items.toMutableList()
+
+                            flag = !flag
+                        },
+                            Modifier.padding(start = 5.dp,end = 5.dp)
+                        ) {
+                            Text("সকাল")
+                        }
+//                        Spacer(modifier = Modifier.weight(1f))
+                        OutlinedButton(onClick = {
+                            for(it in resName[selectedResID].itemsWhen)
+                                if(it.whenPrepare=="evening")
+                                    itm= it.items.toMutableList()
+
+                            flag = !flag
+
+                        },
+                            Modifier.padding(start = 5.dp,end = 5.dp)
+                            ) {
+                            Text("দুপুর")
+                        }
+//                        Spacer(modifier = Modifier.weight(1f))
+                        OutlinedButton(onClick = {
+                            for(it in resName[selectedResID].itemsWhen)
+                                if(it.whenPrepare=="night")
+                                    itm= it.items.toMutableList()
+
+                            flag = !flag
+                            },
+                            Modifier.padding(start = 5.dp,end = 5.dp)
+                            ) {
+                            Text("রাত")
+                        }
+                    }
+//                    Spacer(modifier = Modifier.height(35.dp))
+                    LazyVerticalGrid(columns = GridCells.Fixed(2), content = {
+                        flag=!flag
+                        items(itm){
                                 item->
-                            RestaurantCard(item)
+                                RestaurantCard(item)
                         }
 //                        Spacer(modifier = Modifier.height(200.dp))
                     } )
@@ -163,6 +223,7 @@ class ItemClass {
                         item.numberOfSelection = if (isSelected!!) 1 else 0;
                         totalItemInCart += item.numberOfSelection!!;
                     }
+                    .padding(5.dp)
                     .background(if (isSelected!!) Color.Red else borderColor)
             ) {
                 Card(
