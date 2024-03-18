@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.eateryapp.Data.database
 import com.example.eateryapp.Data.localContext
+import com.example.eateryapp.Data.userName
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -185,10 +186,12 @@ class Login {
 //                                val mail = snap.key.toString() // this is for mail as a root
                                 val mail = snap.child("mail").value.toString()
                                 val pass = snap.child("pass").value.toString()
+                                val name = snap.child("name").value.toString()
 
-                                Log.d("login", "Database mail: $mail  Text-field Mail -> $mailStore ||| Database -> $pass Textfield ->  $passStore")
+                                Log.d("login", "Database mail: $mail  Text-field Mail -> $mailStore ||| Database -> $pass Textfield ->  $passStore UserName = $name")
 
                                 if(mail == mailStore && pass == passStore){
+                                    userName = name
                                     // Save the flag for successfully Login.
                                     FlagManager.saveFlag(localContext, 2)
 

@@ -32,3 +32,7 @@ var ok : Boolean = false
 lateinit var navController: NavController
 @SuppressLint("StaticFieldLeak")
 lateinit var navController2: NavController
+
+
+var userName:String = "Md Ahasanul Haque Sazid"
+var UserMail:String = "aa@gmail.com"

@@ -32,14 +32,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.eateryapp.Data.localContext
 import com.example.eateryapp.Data.navController2
 import com.example.eateryapp.Data.totalItemInCart
+import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.Screens.CartClass
 import com.example.eateryapp.Screens.ItemClass
 import com.example.eateryapp.Login.Login
 import com.example.eateryapp.QR.QR_UI
 import com.example.eateryapp.QR.TurnOnCamera
 import com.example.eateryapp.Screens.RestaurantClass
+import com.example.eateryapp.Screens.SettingUI
 import com.example.eateryapp.Screens.SignUP
 
 
@@ -92,6 +95,7 @@ class BottomNavigationBar {
                     composable("Login"){ Login.Login(navController2)}
                     composable("SignUp"){ SignUP.SignUP(navController2)}
                     composable("ScanQR"){ TurnOnCamera() }
+                    composable("Setting"){ SettingUI(navController = navController2)}
                 }
             }
         }
@@ -109,9 +113,9 @@ class BottomNavigationBar {
             ) {
 
 
-                LaunchedEffect(totalItemInCart){
-                    items[1].badgeCount= totalItemInCart;
-                }
+//                LaunchedEffect(totalItemInCart){
+//                    items[1].badgeCount= totalItemInCart;
+//                }
 
 
                 items.forEachIndexed {
@@ -129,7 +133,11 @@ class BottomNavigationBar {
                                 navController.navigate("CartClass")
                             }
                             else{
-                                navController.navigate("Login")
+                                val flag = FlagManager.getFlag(localContext)
+                                if(flag == 2)
+                                    navController.navigate("Setting")
+                                else
+                                    navController.navigate("Login")
                             }
                             // navController.navigate(item.title)
                         },
