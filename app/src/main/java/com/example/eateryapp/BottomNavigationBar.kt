@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -18,7 +17,6 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -34,7 +32,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eateryapp.Data.localContext
 import com.example.eateryapp.Data.navController2
-import com.example.eateryapp.Data.totalItemInCart
 import com.example.eateryapp.Login.FlagManager
 import com.example.eateryapp.Screens.CartClass
 import com.example.eateryapp.Screens.ItemClass
@@ -42,6 +39,8 @@ import com.example.eateryapp.Login.Login
 import com.example.eateryapp.Login.OwnerUI
 import com.example.eateryapp.QR.QR_UI
 import com.example.eateryapp.QR.TurnOnCamera
+import com.example.eateryapp.Screens.OnTableOrder
+import com.example.eateryapp.Screens.PaymentUI
 import com.example.eateryapp.Screens.RestaurantClass
 import com.example.eateryapp.Screens.SettingUI
 import com.example.eateryapp.Screens.SignUP
@@ -98,6 +97,8 @@ class BottomNavigationBar {
                     composable("ScanQR"){ TurnOnCamera() }
                     composable("Setting"){ SettingUI(navController = navController2)}
                     composable("Owner"){ OwnerUI(navController2) }
+                    composable("Payment"){ PaymentUI(navController2)}
+                    composable("OnTableOrder"){OnTableOrder(navController2)}
                 }
             }
         }

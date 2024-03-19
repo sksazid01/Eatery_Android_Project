@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -29,6 +28,7 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -47,9 +47,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.eateryapp.Data.RestaurantItems
+import com.example.eateryapp.ViewModel.TotalValue
 import com.example.eateryapp.Data.resName
 import com.example.eateryapp.Data.selectedResID
 import com.example.eateryapp.Data.totalItemInCart
@@ -60,6 +62,8 @@ class CartClass {
             @Composable
             fun View10(navController: NavController)
             {
+                val viewModel: TotalValue = viewModel()
+
 
                 val configuration = LocalConfiguration.current
                 val screenWidthDp = configuration.screenWidthDp.dp
@@ -72,7 +76,7 @@ class CartClass {
 //                        contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .width(screenWidthDp)
-                        .height(screenHeightDp - 100.dp)
+                        .height(screenHeightDp - 70.dp)
                         .background(
                             brush = Brush.linearGradient(
                                 colors = listOf(
@@ -89,25 +93,30 @@ class CartClass {
                     Column(
                         modifier = Modifier.padding(30.dp)
                     ) {
+
                         Text(text = " "+"Selected"+" items in cart", fontSize = 25.sp, fontWeight = FontWeight.ExtraBold)
 
 
 
                         var isPressClear by remember { mutableStateOf(false) }
-
+                        var tempTotal = 0
                         Box(modifier=Modifier.height(screenHeightDp-350.dp)) {
                                 LazyColumn(
                                     content = {
                                         isPressClear=false
                                         items(resName[selectedResID].itemsWhen) { item ->
                                             for(it in item.items)
-                                               if(it.numberOfSelection!! >0)
-                                                CartItem(it, navController);
+                                               if(it.numberOfSelection!! >0) {
+                                                   tempTotal+=it.price!!
+                                                   CartItem(viewModel,it, navController)
+                                               }
                                         }
                                     },
                                 )
                         }
 
+                        viewModel.increase(tempTotal)
+                        val totalValue by viewModel.totalValue.collectAsState()
 
 
 
@@ -132,12 +141,17 @@ class CartClass {
                                 .padding(start = 10.dp, end = 10.dp),
                             shape = RoundedCornerShape(20.dp)
                         )
-                        Text(text = "Total: ", fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(start = 15.dp))
-                       
-                    Row(){
-                        CreateButton("PreOrder",130)
+
+                        //total here
+//                        Text(text = "Total: $totalValue", fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(10.dp))
+                            Spacer(modifier = Modifier.padding(10.dp))
+
+
+
+                    Row{
+                        CreateButton("PreOrder",130,"Payment",navController)
                         Spacer(modifier = Modifier.width(3.dp))
-                        CreateButton(buttonText = "OnTable Order",180)
+                        CreateButton(buttonText = "OnTable Order",180,"OnTableOrder",navController)
                     }
                         
                         Row {
@@ -154,11 +168,15 @@ class CartClass {
                     }
                 }
             }
+
+
             
             @Composable
-            fun CreateButton(buttonText:String,width:Int){
+            fun CreateButton(buttonText:String,width:Int,navigate:String,navController: NavController){
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                          navController.navigate(navigate)
+                    },
                     modifier= Modifier
                         .width(width.dp)
                         .padding(5.dp)
@@ -176,7 +194,7 @@ class CartClass {
                 }
             }
         @Composable
-        fun CartItem(item: RestaurantItems, navController: NavController){
+        fun CartItem(viewModel: TotalValue, item: RestaurantItems, navController: NavController){
            OutlinedCard (
                modifier = Modifier
                    .padding(5.dp)
@@ -201,9 +219,10 @@ class CartClass {
                            )
                        )
 
-
                ) {
-                   var value by remember { mutableIntStateOf(item.numberOfSelection!!) }
+                   var value by remember { mutableIntStateOf(1) }
+//                   val viewModel: TotalValue = viewModel()
+
                    Image(
                        painter =  rememberAsyncImagePainter(model = item.image), contentDescription = "",
                        alignment = Alignment.CenterStart,
@@ -229,6 +248,8 @@ class CartClass {
                        Row {
                            Icon(painter = painterResource(id = R.drawable.baseline_remove_24), contentDescription ="",modifier = Modifier.clickable {
                                 value--
+                                if(value>0)
+                                    viewModel.decrement(item.price!!)
                                 totalItemInCart--
                                 item.numberOfSelection=item.numberOfSelection!! - 1
                                if(value<1) {
@@ -241,10 +262,10 @@ class CartClass {
                            Text(text = "  $value  ")
                            Icon(imageVector = Icons.Default.Add, contentDescription = "",modifier = Modifier.clickable {
                                 value++
+                                viewModel.increase(item.price!!)
                                 totalItemInCart++
-                                item.numberOfSelection?.let {
-                                    item.numberOfSelection = item.numberOfSelection!! + 1
-                                }
+                                item.numberOfSelection = item.numberOfSelection!! + 1
+
                            })
                        }
                    }
