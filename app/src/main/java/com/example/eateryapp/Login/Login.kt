@@ -14,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +33,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -37,6 +43,7 @@ import androidx.navigation.NavController
 import com.example.eateryapp.Data.database
 import com.example.eateryapp.Data.localContext
 import com.example.eateryapp.Data.userName
+import com.example.eateryapp.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -100,6 +107,8 @@ class Login {
                         )
 
                         var passStore by remember {mutableStateOf("") }
+                        var passwordVisibility by remember {mutableStateOf(false) }
+
                         OutlinedTextField(value = passStore , onValueChange = { passStore=it},
                         singleLine = true,
                         label = { Text(text = "Password")},
@@ -107,7 +116,16 @@ class Login {
                         modifier= Modifier
                             .fillMaxWidth()
                             .padding(bottom = 30.dp),
-                        shape = RoundedCornerShape(20.dp))
+                        shape = RoundedCornerShape(20.dp),
+                        visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+                        trailingIcon = {
+                                Icon(
+                                    painter = painterResource(id = if (passwordVisibility) R.drawable.eyeopen else R.drawable.hide),
+                                    contentDescription = if (passwordVisibility) "Hide Password" else "Show Password",
+                                    modifier = Modifier.clickable { passwordVisibility = !passwordVisibility }
+                                )
+                        }
+                        )
 
                         Row(){
                             CreateLoginButton(mailStore, passStore,navController,localContext,"Login As User","mapClass",Color.Red)

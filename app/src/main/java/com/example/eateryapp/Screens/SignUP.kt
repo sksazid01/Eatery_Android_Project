@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +33,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,6 +44,7 @@ import com.example.eateryapp.Data.SingUPData
 import com.example.eateryapp.Data.database
 import com.example.eateryapp.Data.loadTotalUser
 import com.example.eateryapp.Data.totalUser
+import com.example.eateryapp.R
 import com.example.eateryapp.SignUp.SignUpUiEvent
 import com.example.eateryapp.SignUp.SignUpViewModel
 import com.google.firebase.database.ktx.database
@@ -135,6 +140,9 @@ class SignUP {
 //                    )
 
                     var passStore by remember {mutableStateOf("") }
+                    var passwordVisibility by remember {mutableStateOf(false) }
+
+
                     OutlinedTextField(value = passStore , onValueChange = { passStore=it},
                         singleLine = true,
                         label = { Text(text = "Password")},
@@ -142,7 +150,16 @@ class SignUP {
                         modifier= Modifier
                             .fillMaxWidth()
                             .padding(bottom = 30.dp),
-                        shape = RoundedCornerShape(20.dp))
+                        shape = RoundedCornerShape(20.dp),
+                        visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+                        trailingIcon = {
+                            Icon(
+                                painter = painterResource(id = if (passwordVisibility) R.drawable.eyeopen else R.drawable.hide),
+                                contentDescription = if (passwordVisibility) "Hide Password" else "Show Password",
+                                modifier = Modifier.clickable { passwordVisibility = !passwordVisibility }
+                            )
+                        }
+                        )
 
 //                    PasswordTextFieldComponent(
 //                        labelValue = "Password...",
