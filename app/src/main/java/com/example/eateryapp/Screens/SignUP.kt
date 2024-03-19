@@ -96,120 +96,120 @@ class SignUP {
                         color = Color.Black
                     )
 
-//                    var nameStore by remember { mutableStateOf("") }
-//                    OutlinedTextField(
-//                        value =nameStore ,
-//                        onValueChange ={ nameStore=it},
-//                        singleLine = true,
-//                        label = { Text(text = "User Name")},
-//                        modifier= Modifier
-//                            .fillMaxWidth()
-//                            .padding(bottom = 30.dp),
-//                        shape = RoundedCornerShape(20.dp)
-//                    )
-                    MyTextFieldComponent(
-                        labelValue = "Name...",
-                        onTextChanged = {
-                            signUpViewModel.onEvent(SignUpUiEvent.nameChange(it))
-                        },
+                    var nameStore by remember { mutableStateOf("") }
+                    OutlinedTextField(
+                        value =nameStore ,
+                        onValueChange ={ nameStore=it},
+                        singleLine = true,
+                        label = { Text(text = "User Name")},
+                        modifier= Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 30.dp),
+                        shape = RoundedCornerShape(20.dp)
                     )
-
-//                    var mailStore by remember { mutableStateOf("") }
-//                    OutlinedTextField(
-//                        value =mailStore ,
-//                        onValueChange ={ mailStore=it},
-//                        singleLine = true,
-//                        label = { Text(text = "Email")},
-////                            colors = TextFieldDefaults.colors()
-//                        modifier= Modifier
-//                            .fillMaxWidth()
-//                            .padding(bottom = 30.dp),
-//                        shape = RoundedCornerShape(20.dp)
+//                    MyTextFieldComponent(
+//                        labelValue = "Name...",
+//                        onTextChanged = {
+//                            signUpViewModel.onEvent(SignUpUiEvent.nameChange(it))
+//                        },
 //                    )
 
-                    MyTextFieldComponent(
-                        labelValue = "Email...",
-                        onTextChanged = {
-                            signUpViewModel.onEvent(SignUpUiEvent.emailChange(it))
-                        },
+                    var mailStore by remember { mutableStateOf("") }
+                    OutlinedTextField(
+                        value =mailStore ,
+                        onValueChange ={ mailStore=it},
+                        singleLine = true,
+                        label = { Text(text = "Email")},
+//                            colors = TextFieldDefaults.colors()
+                        modifier= Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 30.dp),
+                        shape = RoundedCornerShape(20.dp)
                     )
-
-//                    var passStore by remember {mutableStateOf("") }
-//                    OutlinedTextField(value = passStore , onValueChange = { passStore=it},
-//                        singleLine = true,
-//                        label = { Text(text = "Password")},
-////                            colors = TextFieldDefaults.colors()
-//                        modifier= Modifier
-//                            .fillMaxWidth()
-//                            .padding(bottom = 30.dp),
-//                        shape = RoundedCornerShape(20.dp))
 //
-                    PasswordTextFieldComponent(
-                        labelValue = "Password...",
-                        onTextSelected = {
-                            signUpViewModel.onEvent(SignUpUiEvent.passwordChange(it))
-                        },
-                    )
+//                    MyTextFieldComponent(
+//                        labelValue = "Email...",
+//                        onTextChanged = {
+//                            signUpViewModel.onEvent(SignUpUiEvent.emailChange(it))
+//                        },
+//                    )
+
+                    var passStore by remember {mutableStateOf("") }
+                    OutlinedTextField(value = passStore , onValueChange = { passStore=it},
+                        singleLine = true,
+                        label = { Text(text = "Password")},
+//                            colors = TextFieldDefaults.colors()
+                        modifier= Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 30.dp),
+                        shape = RoundedCornerShape(20.dp))
+
+//                    PasswordTextFieldComponent(
+//                        labelValue = "Password...",
+//                        onTextSelected = {
+//                            signUpViewModel.onEvent(SignUpUiEvent.passwordChange(it))
+//                        },
+//                    )
 
 ///////////////////////////////////////////////// Write a message to the database //////////////////////////////////////////////////////////////////
 
 
-//                    val signUpRef = database.getReference("SignUP Information")
-//                    val totalUserRef = database.getReference("totalUser")
-//                    val toastContext = LocalContext.current
-//
-//                    Button(
-//                        onClick = {
-////                                Log.d("signup","onClick button pressed")
-//                                if(nameStore.isNotEmpty() and passStore.isNotEmpty() and mailStore.isNotEmpty()){
-//                                    loadTotalUser()
-////                                    Log.d("signup","onClick button pressed and strings are not empty and totalUser: $totalUser")
-//                                    //increase total user and provide unique id for every user.
-//                                     totalUserRef.setValue(totalUser+1)
-//
-//                                    val data= SingUPData(nameStore,passStore)
-//
-//                                    signUpRef.child(mailStore).setValue(data)
-//                                    .addOnSuccessListener {
-//                                        nameStore=""
-//                                        mailStore=""
-//                                        passStore=""
-//                                        navController.navigate("Login")
-//                                    Toast.makeText(toastContext,"Account has been successfully created",Toast.LENGTH_SHORT).show()
-//
-//                                    }.addOnFailureListener {
-////                                        Log.d("signup","onClick button pressed and Unsuccessfully and totalUser: $totalUser")
-//                                        Toast.makeText(toastContext,it.toString(),Toast.LENGTH_SHORT).show()
-//                                    }
-//
-//                                }
-//                            else {
-//                                Toast.makeText(toastContext,"Please Provide All the Information",Toast.LENGTH_SHORT).show()
-//                            }
-//                        },
-//
-//
-//                        modifier = Modifier
-//                            .padding(5.dp)
-//                            .size(300.dp, 50.dp),
-//                        colors = ButtonDefaults.buttonColors(Color.Red),
-//                        shape = RoundedCornerShape(50.dp)
-//
-//                    ) {
-//                        Text(
-//                            text = "SignUp As User",
-//                            color = Color.White,
-////                                fontWeight = FontWeight.ExtraBold
-//                        )
-//                    }
+                    val signUpRef = database.getReference("SignUP Information")
+                    val totalUserRef = database.getReference("totalUser")
+                    val toastContext = LocalContext.current
 
-                    ButtonComponent(
-                        value = "Register",
-                        onButtonClicked = {
-                            signUpViewModel.onEvent(SignUpUiEvent.RegisterButtonClick)
+                    Button(
+                        onClick = {
+//                                Log.d("signup","onClick button pressed")
+                                if(nameStore.isNotEmpty() and passStore.isNotEmpty() and mailStore.isNotEmpty()){
+                                    loadTotalUser()
+//                                    Log.d("signup","onClick button pressed and strings are not empty and totalUser: $totalUser")
+                                    //increase total user and provide unique id for every user.
+                                     totalUserRef.setValue(totalUser+1)
+
+                                    val data= SingUPData(nameStore,mailStore,passStore)
+
+                                    signUpRef.child(totalUser.toString()).setValue(data)
+                                    .addOnSuccessListener {
+                                        nameStore=""
+                                        mailStore=""
+                                        passStore=""
+                                        navController.navigate("Login")
+                                    Toast.makeText(toastContext,"Account has been successfully created",Toast.LENGTH_SHORT).show()
+
+                                    }.addOnFailureListener {
+//                                        Log.d("signup","onClick button pressed and Unsuccessfully and totalUser: $totalUser")
+                                        Toast.makeText(toastContext,it.toString(),Toast.LENGTH_SHORT).show()
+                                    }
+
+                                }
+                            else {
+                                Toast.makeText(toastContext,"Please Provide All the Information",Toast.LENGTH_SHORT).show()
+                            }
                         },
-                        isEnabled = signUpViewModel.allValidationsPassed.value
-                    )
+
+
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .size(300.dp, 50.dp),
+                        colors = ButtonDefaults.buttonColors(Color.Red),
+                        shape = RoundedCornerShape(50.dp)
+
+                    ) {
+                        Text(
+                            text = "SignUp As User",
+                            color = Color.White,
+//                                fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+
+//                    ButtonComponent(
+//                        value = "Register",
+//                        onButtonClicked = {
+//                            signUpViewModel.onEvent(SignUpUiEvent.RegisterButtonClick)
+//                        },
+//                        isEnabled = signUpViewModel.allValidationsPassed.value
+//                    )
 
                     Row (
                         verticalAlignment = Alignment.CenterVertically

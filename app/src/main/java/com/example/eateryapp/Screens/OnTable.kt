@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -25,6 +26,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.navigation.NavController
+import com.example.eateryapp.Data.resName
+import com.example.eateryapp.Data.selectedResID
 
 @Composable
 fun OnTableOrder(navController: NavController){
@@ -62,6 +65,12 @@ fun OnTableOrder(navController: NavController){
 
             Button(
                 onClick = {
+                    for(itt in resName[selectedResID].itemsWhen.indices)
+                        for(it in resName[selectedResID].itemsWhen[itt].items.indices) {
+                            resName[selectedResID].itemsWhen[itt].items[it].numberOfSelection = 0
+                            resName[selectedResID].itemsWhen[itt].items[it].isSelected = false
+                        }
+
                     navController.navigate("RestaurantClass")
                 },
                 modifier= Modifier
