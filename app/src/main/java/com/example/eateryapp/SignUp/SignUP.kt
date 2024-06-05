@@ -178,11 +178,14 @@ class SignUP {
 //                                    increase total user and provide unique id for every user.
                                      totalUserRef.setValue(totalUser+1)
 
-                                    passWord = passStore
-                                    phoneNumber = mailStore
+                                      passWord = passStore
+                                      phoneNumber = mailStore
 
-                                    sendOTP()
-                                    navController.navigate("OTP")
+//                                    sendOTP()
+//                                    navController.navigate("OTP")
+                                      navController.navigate("Subscription")
+
+
 //                                    val data= SingUPData(nameStore,mailStore,passStore)
 //
 //                                    signUpRef.child(totalUser.toString()).setValue(data)

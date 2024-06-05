@@ -71,8 +71,8 @@ class MainActivity : ComponentActivity() {
                 composable("SignUp"){ SignUP.SignUP(navController)}
                 composable("Owner"){ OwnerUI(navController)}
                 composable("Setting"){ SettingUI(navController) }
-                composable("OTP"){OTP_UI.OtpVerification()}
-                composable("Subscription"){subscriptionUI()}
+                composable("OTP"){OTP_UI.OtpVerification(navController)}
+                composable("Subscription"){subscriptionUI(navController)}
               }
             }
         }

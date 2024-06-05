@@ -2,6 +2,7 @@ package com.example.eateryapp.SignUp
 
 import android.util.Log
 import android.widget.Toast
+import androidx.navigation.NavController
 import com.example.abartry.RetrofitStuffs.MyApiService
 import com.example.abartry.RetrofitStuffs.ServiceBuilder
 import com.example.abartry.data.subscribe.SubscribeRequestParameters
@@ -15,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-fun subscriptionOn() {
+fun subscriptionOn(navController: NavController) {
     val subscribeRequestParameters = SubscribeRequestParameters(
         appId = "APP_118916",
         password = "42bc5a246b7982d669866e5b56124328",
@@ -32,7 +33,6 @@ fun subscriptionOn() {
             if (response.isSuccessful) {
                 val apiResponse = response.body()
                 Toast.makeText(localContext,"Subscription request sent successfully", Toast.LENGTH_SHORT).show()
-                navController.navigate("MapClass")
                 Log.d("OTP", "Subscription request sent successfully: $apiResponse")
             } else {
                 // Handle unsuccessful response
@@ -47,8 +47,7 @@ fun subscriptionOn() {
     })
 }
 
-fun subscriptionOff():Boolean {
-    var isUnsubscribe = false
+fun subscriptionOff(navController: NavController) {
     val unsubscribeRequestParameters = UnsubscribeRequestParameters(
         appId = "APP_118916",
         password = "42bc5a246b7982d669866e5b56124328",
@@ -63,11 +62,11 @@ fun subscriptionOff():Boolean {
             response: Response<UnsubscribeResponse>
         ) {
             if (response.isSuccessful) {
-                isUnsubscribe = true
                 val apiResponse = response.body()
                 Toast.makeText(localContext,"UnSubscription request sent successfully", Toast.LENGTH_SHORT).show()
-                navController.navigate("Login")
                 Log.d("OTP", "Subscription request sent successfully: $apiResponse")
+                navController.navigate("Login")
+
             } else {
                 // Handle unsuccessful response
                 Toast.makeText(localContext,"Failed to send UnSubscription request", Toast.LENGTH_SHORT).show()
@@ -79,5 +78,4 @@ fun subscriptionOff():Boolean {
             Log.e("OTP", "Network error: ${t.message}")
         }
     })
-    return isUnsubscribe
 }

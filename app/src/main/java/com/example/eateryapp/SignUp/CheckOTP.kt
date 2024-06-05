@@ -1,12 +1,15 @@
 package com.example.eateryapp.SignUp
 
 import android.util.Log
+import android.widget.Toast
+import androidx.navigation.NavController
 import com.example.abartry.RetrofitStuffs.MyApiService
 import com.example.abartry.RetrofitStuffs.ServiceBuilder
 import com.example.abartry.data.otpVerify.OtpVerifyRespone
 import com.example.abartry.data.otpVerify.VerifyParameters
 import com.example.abartry.data.subscription.StatusResponse
 import com.example.abartry.data.subscription.VerifyParametersStatus
+import com.example.eateryapp.Data.localContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,8 +20,7 @@ val verifyParameters = VerifyParameters(
     referenceNo = "",
     otp = ""
 )
-fun checkOTP(otp: String): Boolean {
-    var isVerified = false;
+fun checkOTP(otp: String,navController: NavController){
     verifyParameters.otp = otp
     Log.d("OTP", "${verifyParameters}")
     val destinationService = ServiceBuilder.buildService(MyApiService::class.java)
@@ -31,8 +33,8 @@ fun checkOTP(otp: String): Boolean {
         ) {
             if (response.isSuccessful) {
                 val apiResponse = response.body()
-                isVerified = true;
                 Log.d("OTP", "OTP verified successfully: $apiResponse")
+                navController.navigate("MapClass")
             } else {
                 // Handle unsuccessful response
                 Log.e("OTP", "Failed to verify OTP: ${response.errorBody()?.string()}")
@@ -44,7 +46,6 @@ fun checkOTP(otp: String): Boolean {
         }
 
     })
-    return isVerified
 }
 
 fun verifyStatus() {

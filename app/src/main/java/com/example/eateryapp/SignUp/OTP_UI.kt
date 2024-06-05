@@ -28,13 +28,14 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.eateryapp.Data.localContext
-import com.example.eateryapp.Data.navController
 
 class OTP_UI {
     companion object {
         @Composable
-        fun OtpVerification() {
+        fun OtpVerification(navController: NavController) {
             localContext = LocalContext.current
 
             Box(
@@ -80,14 +81,7 @@ class OTP_UI {
 
                     Button(
                         onClick = {
-                            if(checkOTP(otpStore)){
-                                Toast.makeText(localContext,"OTP Verification Successfully.", Toast.LENGTH_SHORT).show()
-                                navController.navigate("Subscription")
-                            }
-                            else
-                                Toast.makeText(localContext,"OTP Verification Fail.", Toast.LENGTH_SHORT).show()
-
-
+                            checkOTP(otpStore,navController)
                         },
 
                         modifier = Modifier

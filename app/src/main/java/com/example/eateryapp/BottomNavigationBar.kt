@@ -43,7 +43,9 @@ import com.example.eateryapp.Screens.OnTableOrder
 import com.example.eateryapp.Screens.PaymentUI
 import com.example.eateryapp.Screens.RestaurantClass
 import com.example.eateryapp.Screens.SettingUI
+import com.example.eateryapp.SignUp.OTP_UI
 import com.example.eateryapp.SignUp.SignUP
+import com.example.eateryapp.SignUp.subscriptionUI
 
 
 data class BottomNavigationItems(
@@ -99,6 +101,8 @@ class BottomNavigationBar {
                     composable("Owner"){ OwnerUI(navController2) }
                     composable("Payment"){ PaymentUI(navController2)}
                     composable("OnTableOrder"){OnTableOrder(navController2)}
+                    composable("OTP"){ OTP_UI.OtpVerification(navController2 )}
+                    composable("Subscription"){ subscriptionUI(navController2 ) }
                 }
             }
         }

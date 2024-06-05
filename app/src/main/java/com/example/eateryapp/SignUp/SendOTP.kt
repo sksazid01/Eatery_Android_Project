@@ -1,6 +1,7 @@
 package com.example.eateryapp.SignUp
 
 import android.util.Log
+import androidx.navigation.NavController
 import com.example.abartry.RetrofitStuffs.MyApiService
 import com.example.abartry.RetrofitStuffs.ServiceBuilder
 import com.example.abartry.data.otpRequest.ApiResponse
@@ -10,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-fun sendOTP() {
+fun sendOTP(navController:NavController) {
     val requestParameters = RequestParameters(
         appId = "APP_118916",
         password = "42bc5a246b7982d669866e5b56124328",
@@ -29,6 +30,8 @@ fun sendOTP() {
                     verifyParameters.referenceNo = apiResponse.referenceNo
                 }
                 Log.d("OTP", "OTP sent successfully: $apiResponse")
+                navController.navigate("OTP")
+
             } else {
                 // Handle unsuccessful response
                 Log.e("OTP", "Failed to send OTP: ${response.errorBody()?.string()}")
