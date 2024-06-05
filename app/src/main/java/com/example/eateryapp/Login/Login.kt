@@ -85,20 +85,20 @@ class Login {
                             color = Color.Black
                         )
                         Text(
-                            text="Enter Your Email And Password",
-                            fontSize = 5.em,
+                            text="Enter Your Phone No. And Password",
+                            fontSize = 4.em,
                             modifier = Modifier
-                                .padding(20.dp)
+                                .padding(15.dp)
                                 .fillMaxWidth(),
                             color = Color.Black
                         )
 
-                        var mailStore by remember { mutableStateOf("") }
+                        var mailStore by remember { mutableStateOf("88") }
                         OutlinedTextField(
                             value =mailStore ,
                             onValueChange ={ mailStore=it},
                             singleLine = true,
-                            label = { Text(text = "Email")},
+                            label = { Text(text = "Phone Number")},
 //                            colors = TextFieldDefaults.colors()
                             modifier= Modifier
                                 .fillMaxWidth()

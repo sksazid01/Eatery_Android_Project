@@ -43,7 +43,7 @@ import com.example.eateryapp.Screens.OnTableOrder
 import com.example.eateryapp.Screens.PaymentUI
 import com.example.eateryapp.Screens.RestaurantClass
 import com.example.eateryapp.Screens.SettingUI
-import com.example.eateryapp.Screens.SignUP
+import com.example.eateryapp.SignUp.SignUP
 
 
 data class BottomNavigationItems(

@@ -1,6 +1,5 @@
-package com.example.eateryapp.Screens
+package com.example.eateryapp.SignUp
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -43,15 +42,10 @@ import androidx.navigation.NavController
 import com.example.eateryapp.Data.SingUPData
 import com.example.eateryapp.Data.database
 import com.example.eateryapp.Data.loadTotalUser
+import com.example.eateryapp.Data.passWord
+import com.example.eateryapp.Data.phoneNumber
 import com.example.eateryapp.Data.totalUser
 import com.example.eateryapp.R
-import com.example.eateryapp.SignUp.SignUpUiEvent
-import com.example.eateryapp.SignUp.SignUpViewModel
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.nativemobilebits.loginflow.components.ButtonComponent
-import com.nativemobilebits.loginflow.components.MyTextFieldComponent
-import com.nativemobilebits.loginflow.components.PasswordTextFieldComponent
 
 class SignUP {
     companion object{
@@ -119,12 +113,12 @@ class SignUP {
 //                        },
 //                    )
 
-                    var mailStore by remember { mutableStateOf("") }
+                    var mailStore by remember { mutableStateOf("88") }
                     OutlinedTextField(
                         value =mailStore ,
                         onValueChange ={ mailStore=it},
                         singleLine = true,
-                        label = { Text(text = "Email")},
+                        label = { Text(text = "Phone Number")},
 //                            colors = TextFieldDefaults.colors()
                         modifier= Modifier
                             .fillMaxWidth()
@@ -181,23 +175,28 @@ class SignUP {
                                 if(nameStore.isNotEmpty() and passStore.isNotEmpty() and mailStore.isNotEmpty()){
                                     loadTotalUser()
 //                                    Log.d("signup","onClick button pressed and strings are not empty and totalUser: $totalUser")
-                                    //increase total user and provide unique id for every user.
+//                                    increase total user and provide unique id for every user.
                                      totalUserRef.setValue(totalUser+1)
 
-                                    val data= SingUPData(nameStore,mailStore,passStore)
+                                    passWord = passStore
+                                    phoneNumber = mailStore
 
-                                    signUpRef.child(totalUser.toString()).setValue(data)
-                                    .addOnSuccessListener {
-                                        nameStore=""
-                                        mailStore=""
-                                        passStore=""
-                                        navController.navigate("Login")
-                                    Toast.makeText(toastContext,"Account has been successfully created",Toast.LENGTH_SHORT).show()
-
-                                    }.addOnFailureListener {
-//                                        Log.d("signup","onClick button pressed and Unsuccessfully and totalUser: $totalUser")
-                                        Toast.makeText(toastContext,it.toString(),Toast.LENGTH_SHORT).show()
-                                    }
+                                    sendOTP()
+                                    navController.navigate("OTP")
+//                                    val data= SingUPData(nameStore,mailStore,passStore)
+//
+//                                    signUpRef.child(totalUser.toString()).setValue(data)
+//                                    .addOnSuccessListener {
+//                                        nameStore=""
+//                                        mailStore=""
+//                                        passStore=""
+//                                        navController.navigate("OTP")
+//                                    Toast.makeText(toastContext,"Account has been successfully created",Toast.LENGTH_SHORT).show()
+//
+//                                    }.addOnFailureListener {
+////                                        Log.d("signup","onClick button pressed and Unsuccessfully and totalUser: $totalUser")
+//                                        Toast.makeText(toastContext,it.toString(),Toast.LENGTH_SHORT).show()
+//                                    }
 
                                 }
                             else {

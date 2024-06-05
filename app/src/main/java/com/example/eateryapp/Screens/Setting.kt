@@ -77,7 +77,7 @@ fun SettingUI(navController: NavController){
 
 
 
-            Spacer(modifier = Modifier.height(200.dp))
+            Spacer(modifier = Modifier.height(160.dp))
 
 
             OutlinedButton(
@@ -95,6 +95,27 @@ fun SettingUI(navController: NavController){
             ) {
                 Text(
                     text = "Change User Information",
+                    color = Color.Black,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            }
+
+            OutlinedButton(
+                onClick = {
+                    Toast.makeText(localContext,"Currently Unable this feature!!",Toast.LENGTH_SHORT).show()
+
+                },
+
+                modifier = Modifier
+                    .padding(5.dp)
+                    .size(170.dp, 50.dp)
+                    .align(Alignment.CenterHorizontally),
+
+//                colors = ButtonDefaults.buttonColors(Color.Black),
+                shape = RoundedCornerShape(40.dp)
+            ) {
+                Text(
+                    text = "Ordered History",
                     color = Color.Black,
                     fontWeight = FontWeight.ExtraBold
                 )
