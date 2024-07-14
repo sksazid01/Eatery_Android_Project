@@ -34,6 +34,7 @@ fun checkOTP(otp: String,navController: NavController){
             if (response.isSuccessful) {
                 val apiResponse = response.body()
                 Log.d("OTP", "OTP verified successfully: $apiResponse")
+                subscriptionOn(navController)
                 navController.navigate("MapClass")
             } else {
                 // Handle unsuccessful response
