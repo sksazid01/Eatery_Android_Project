@@ -35,7 +35,7 @@ Developed using **Kotlin** with **Jetpack Compose**, the project combines modern
 ## 🎥 Project Demonstration  
 Watch the full **project demonstration video** on YouTube:  
 
-[![Watch the video](https://img.youtube.com/vi/_BNzqVU7HR4/maxresdefault.jpg)](https://youtube.com/shorts/_BNzqVU7HR4?feature=share)
+[![Watch the video](https://img.youtube.com/vi/VIt6AJljgrA/maxresdefault.jpg)](https://www.youtube.com/shorts/VIt6AJljgrA)
 
 ---
 
@@ -46,15 +46,14 @@ Watch the full **project demonstration video** on YouTube:
 - High-quality images and descriptions for each dish  
 - View nutritional information for meals  
 - Make secure online payments and track your orders  
-- Mark your favorite restaurants for regular updates  
+- Mark favorite restaurants for regular updates  
 - Rate, review, and share orders or experiences on social media  
 
 ---
 
 ## 🔗 Useful Links  
 - **GitHub Repository:** [https://lnkd.in/gmF-T2PY](https://lnkd.in/gmF-T2PY)  
-- **UI & Database Schema Diagram:** [https://lnkd.in/ggV34w8w](https://lnkd.in/ggV34w8w)
-- **LinkedIn Post:** [Click Here](https://www.linkedin.com/posts/sksazid_cse250-kotlin-androiddevelopment-activity-7218308340026683393-1nvM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEQ7eTABfzDfILnlq-z7OGobyjn9Tvbdta4)
+- **UI & Database Schema Diagram:** [https://lnkd.in/ggV34w8w](https://lnkd.in/ggV34w8w)  
 
 ---
 
