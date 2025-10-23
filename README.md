@@ -1,9 +1,79 @@
-# Eatery_Android_Project
-For Details: https://www.linkedin.com/posts/sksazid_we-are-thrilled-to-present-our-cse250-activity-7218308340026683393-gusw?utm_source=share&utm_medium=member_android
+# 🎓 CSE250 Team Project — Restaurant Food Ordering App  
 
-We are thrilled to present our CSE250 project! 🎉
-We've developed an Android application using Kotlin, featuring a sleek, modern frontend designed with Jetpack Compose. This app simplifies the process of ordering food in restaurants. We are immensely grateful for the creativity and support from BDApps that made this project a success. 🙌🍽️
+## 📘 Overview  
+We are excited to present our **CSE250 Team Project** — an innovative **Android Application** that simplifies food ordering in restaurants.  
+Built using **Kotlin** and **Jetpack Compose**, this app provides a modern, dynamic, and user-friendly interface for browsing restaurants, viewing menus, and placing food orders efficiently. 🍽📱  
 
-Short Description:
-From the user's perspective, the Software Requirements Specification (SRS) for the app includes several key features. The app lets users discover restaurants, such as Central Cafeteria, Hall Dining, Staff Canteen, and popular spots like Shobuj Bangla and Mr. Kachchi Ghor, by accessing detailed business profiles. These profiles will display current menus with pricing, and users can scan QR codes to select tables and view menus. The app enables users to create personal profiles, organize menus with high-quality images and descriptions, and provide nutritional information for dishes. Customers can order remotely to avoid wait times, make secure online payments, and designate favorite restaurants for regular updates. Additionally, the app allows users to rate and provide feedback on their dining experiences and share their orders or reviews on social media.
+---
 
+## 👥 Team Members  
+- **Md. Khaled Bin**  
+- **Md. Ahasanul Haque Sazid**  
+
+### 🙏 Special Thanks  
+- **Niloy Sarker**  
+- **bdapps** — for their constant support, creativity, and guidance throughout our development journey.  
+
+---
+
+## 💡 About the Project  
+Our Android application is designed to automate and simplify the restaurant food ordering process.  
+Users can explore dining places such as cafeterias, halls, and popular food outlets, view detailed menus, and place orders digitally.  
+
+Developed using **Kotlin** with **Jetpack Compose**, the project combines modern UI design practices with functional backend integration to enhance user experience and efficiency.  
+
+---
+
+## 🛠️ Technologies Used  
+- **Kotlin**  
+- **Jetpack Compose**  
+- **Android Studio**  
+- **Firebase (for data storage)**  
+
+---
+
+## 🎥 Project Demonstration  
+Watch the full **project demonstration video** on YouTube:  
+
+[![Watch the video](https://img.youtube.com/vi/_BNzqVU7HR4/maxresdefault.jpg)](https://youtube.com/shorts/_BNzqVU7HR4?feature=share)
+
+---
+
+## 📜 Key Features  
+- Browse multiple restaurants (e.g., Central Cafeteria, Hall Dining, Staff Canteen, Shobuj Bangla, Mr. Kachchi Ghor)  
+- View up-to-date menus with itemized pricing  
+- Scan QR codes to select tables and view restaurant menus instantly  
+- High-quality images and descriptions for each dish  
+- View nutritional information for meals  
+- Make secure online payments and track your orders  
+- Mark your favorite restaurants for regular updates  
+- Rate, review, and share orders or experiences on social media  
+
+---
+
+## 🔗 Useful Links  
+- **GitHub Repository:** [https://lnkd.in/gmF-T2PY](https://lnkd.in/gmF-T2PY)  
+- **UI & Database Schema Diagram:** [https://lnkd.in/ggV34w8w](https://lnkd.in/ggV34w8w)
+- **LinkedIn Post:** [Click Here](https://www.linkedin.com/posts/sksazid_cse250-kotlin-androiddevelopment-activity-7218308340026683393-1nvM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEQ7eTABfzDfILnlq-z7OGobyjn9Tvbdta4)
+
+---
+
+## 🚀 Future Enhancements  
+- Integration of real-time order tracking  
+- Advanced recommendation system based on order history  
+- Push notifications for offers and updates  
+- Dark mode UI support  
+
+---
+
+## 🌟 Acknowledgments  
+This project was developed as part of the **CSE250 Course Project** in the **Department of Computer Science and Engineering**.  
+Special thanks to our mentors and the **bdapps** community for their continuous support and encouragement. 🙌  
+
+---
+
+## 📄 License  
+This repository is for educational and demonstration purposes only.  
+All rights reserved © 2024 by the **CSE250 Project Team**.  
+
+---
